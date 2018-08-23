@@ -3,6 +3,6 @@
 
 require 'wikidata/fetcher'
 
-names = EveryPolitician::Wikidata.morph_wikinames(source: 'tmtmtmtm/china-national-peoples-congress', column: 'wikiname')
-EveryPolitician::Wikidata.scrape_wikidata(names: { zh: names })
-
+sparq = 'SELECT DISTINCT ?item WHERE { ?item p:P39 [ ps:P39 wd:Q10891456 ; pq:P2937 wd:Q247766 ] }'
+ids = EveryPolitician::Wikidata.sparql(sparq)
+EveryPolitician::Wikidata.scrape_wikidata(ids: ids)
